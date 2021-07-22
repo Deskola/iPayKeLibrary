@@ -1,0 +1,3 @@
+rootProject.name = "ipayweblib"
+include ':app'
+include ':ipay_channels'
