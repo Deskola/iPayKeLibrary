@@ -2,6 +2,10 @@ plugins {
     id 'com.android.library'
     id 'kotlin-android'
 }
+apply plugin: 'maven-publish'
+
+def artifactId = 'ipay_channels'
+def groupId = 'com.example.ipay_channels'
 
 android {
     compileSdkVersion 31
@@ -41,4 +45,18 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+}
+
+project.afterEvaluate {
+    publishing {
+        publications {
+            library(MavenPublication) {
+                setGroupId groupId
+                setArtifactId artifactId
+                version android.defaultConfig.versionName
+
+                artifact bundleReleaseAar
+            }
+        }
+    }
 }
